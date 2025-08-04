@@ -23,7 +23,9 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.quotecomposeapp.DataManager
 import com.example.quotecomposeapp.R
 import com.example.quotecomposeapp.models.Quote
@@ -69,14 +71,19 @@ fun QuoteDetail(quote: Quote) {
                 Text(
                     text = quote.text,
                     fontFamily = FontFamily(Font(R.font.montserrat)),
-                    style = MaterialTheme.typography.titleMedium
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 24.sp
                 )
+
                 Spacer(Modifier.height(16.dp))
+
                 Text(
                     text = quote.author,
                     fontFamily = FontFamily(Font(R.font.montserrat)),
-                    style = MaterialTheme.typography.titleSmall
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 14.sp
                 )
+
             }
         }
     }
