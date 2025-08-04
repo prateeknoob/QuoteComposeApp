@@ -44,10 +44,9 @@ fun QuoteDetail(quote: Quote) {
             .background(
                 Brush.linearGradient(
                     colors = listOf(
-                        Color(0xFFF00000),  // Bold red
-                        Color(0xFFFFA500),  // Orange
-                        Color(0xFFE3E3E3),  // Light gray
-                        Color(0xFFFFC0CB)   // Soft pink
+                        Color(0xFF2196F3), // Blue
+                        Color(0xFF00BCD4), // Cyan
+                        Color(0xFFE0F7FA)  // Light Aqua
                     )
                 )
             )
