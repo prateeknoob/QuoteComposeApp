@@ -1,7 +1,9 @@
 package com.example.quotecomposeapp.screens
 
+import android.service.autofill.OnClickAction
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -32,13 +34,16 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.quotecomposeapp.models.Quote
 
 
 @Composable
-fun QuoteListItem() {
+fun QuoteListItem(quote: Quote,onClick:() -> Unit) {
     Card(
         elevation = CardDefaults.elevatedCardElevation(defaultElevation = 4.dp),
-        modifier = Modifier.padding(8.dp)
+        modifier = Modifier
+            .clickable{onClick()}
+            .padding(8.dp)
     ) {
         Row(
             modifier = Modifier.padding(16.dp)
@@ -58,7 +63,7 @@ fun QuoteListItem() {
                 modifier = Modifier.weight(1f)
             ) {
                 Text(
-                    text = "Time is the most valuable thing a man can spend.",
+                    text = quote.text,
                     style = MaterialTheme.typography.bodyMedium,
                     modifier = Modifier.padding(0.dp, 0.dp, 0.dp, 8.dp)
                 )
@@ -69,7 +74,7 @@ fun QuoteListItem() {
                         .height(1.dp)
                 )
                 Text(
-                    text = "Theophrastus",
+                    text = quote.author,
                     style = MaterialTheme.typography.bodyMedium,
                     fontWeight = FontWeight.Thin,
                     modifier = Modifier.padding(top = 4.dp)
