@@ -38,11 +38,11 @@ import com.example.quotecomposeapp.models.Quote
 
 
 @Composable
-fun QuoteListItem(quote: Quote,onClick:() -> Unit) {
+fun QuoteListItem(quote: Quote,onClick:(quote: Quote) -> Unit) {
     Card(
         elevation = CardDefaults.elevatedCardElevation(defaultElevation = 4.dp),
         modifier = Modifier
-            .clickable{onClick()}
+            .clickable{onClick(quote)}
             .padding(8.dp)
     ) {
         Row(

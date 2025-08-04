@@ -22,6 +22,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,15 +38,21 @@ class MainActivity : ComponentActivity() {
 }
 
 
-//app crashed when on main thread so coroutine scope to make it on IO thread
+//app crashed when on main thread so coroutine scope to run it on IO thread
 //performance improvement
 
 @Composable
-fun App() {
-    if (DataManager.isDataLoaded.value) {       //data on main thread
-        QuoteListScreen(data=DataManager.data) {
-
+fun App() {             //data on main thread
+    if (DataManager.isDataLoaded.value) {
+        if (DataManager.currentpage.value == Pages.LISTING){
+            QuoteListScreen(data=DataManager.data) {
+                DataManager.switchPages(it)
+            }
         }
+        else{
+            DataManager.currentQuote?.let { QuoteDetail(quote=it) }
+        }
+
     }
     else{
         Box(
@@ -57,4 +65,11 @@ fun App() {
                 )
         }
     }
+}
+
+
+
+enum class Pages{
+    LISTING,
+    DETAIL
 }

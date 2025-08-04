@@ -8,6 +8,9 @@ import com.google.gson.Gson
 object DataManager {                    //file read
 
     var data=emptyArray<Quote>()
+    var currentQuote:Quote?=null
+
+    var currentpage=mutableStateOf(Pages.LISTING)
     var isDataLoaded= mutableStateOf(false)
 
     fun loadAssetfromFile(context: Context){        //state objects are thread safe
@@ -20,5 +23,14 @@ object DataManager {                    //file read
         val gson= Gson()
         data=gson.fromJson(json,Array<Quote>::class.java)
         isDataLoaded.value=true
+    }
+
+    fun switchPages(quote:Quote?){
+        if(currentpage.value==Pages.LISTING){
+            currentQuote=quote
+            currentpage.value=Pages.DETAIL
+        }else{
+            currentpage.value=Pages.LISTING
+        }
     }
 }
